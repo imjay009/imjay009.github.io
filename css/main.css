@@ -167,10 +167,23 @@ li a:hover {
 	
 }
 
-button {
+.category_button {
 	height: 40px;
 	border-radius: 3px;
 	padding: 12px;
+	background-color: #f9f9f9;
+}
+
+.category_button:hover {
+	border-color: #4FC7C6;
+	color: #4FC7C6;
+}
+
+.category_popularity_button {
+	height: 40px;
+	border-radius: 3px;
+	padding: 12px;
+	background-color: #f9f9f9;
 }
 
 .display_item {
