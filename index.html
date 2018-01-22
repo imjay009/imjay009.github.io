@@ -35,8 +35,8 @@
 					<a href="#"><center><img src="images/logo.png" width="100px" height="40px"></center></a>
 				</div>
 				<div class="login_container">
-	        <a href="#">
-          <span class="glyphicon glyphicon-heart-empty"></span> </a>
+	       <!--  <a href="#">
+          <span class="glyphicon glyphicon-heart-empty"></span> </a> -->
 					Login
 				</div>
 			</div>
@@ -89,10 +89,10 @@
 					<div style="float:left; width:30%; padding:20px;">
 						<H4>FILTER BY BRANDS </H4>
 						<div>
-							<button class="category_button" onclick="filterSelection('motorola')"> Motorola </button >
-							<button  class="category_button" onclick="filterSelection('lenovo')"> Lenovo </button >
-							<button  class="category_button" onclick="filterSelection('vivo')"> Vivo </button >
-							<button  class="category_button" onclick="filterSelection('Xiaomi')"> Xiaomi </button >
+							<button class="category_button" onclick="myFunction(event)"> Motorola </button >
+							<button  class="category_button" onclick="myFunction(event)"> Lenovo </button >
+							<button  class="category_button" onclick="myFunction(event)"> Vivo </button >
+							<button  class="category_button" onclick="myFunction(event)"> Xiaomi </button >
 							<a href="#" style="text-decoration:none;"><font color="#CD8839"> &nbsp; Show more</font> </a>
 							<br><br>
 							<a href="#"> <font color="#4FC7C6">Show more filters</font> </a>
@@ -101,10 +101,10 @@
 					<div style="float:left; width:40%; padding:20px;">
 						<H4>FILTER BY PRICE </H4>
 						<div>
-							<button  class="category_button" onclick="myFunction()"> Below 8k </button >
-							<button  class="category_button" onclick="filterSelection('Rs.8k-12k')"> Rs.8k-12k </button >
-							<button  class="category_button" onclick="filterSelection('Rs.12k-18k')" > Rs.12k-18k </button >
-							<button  class="category_button" onclick="filterSelection('Rs.18k-25k')" > Rs.18k-25k </button >
+							<button  class="category_button" onclick="myFunction(event)"> Below 8k </button >
+							<button  class="category_button" onclick="myFunction(event)"> Rs.8k-12k </button >
+							<button  class="category_button" onclick="myFunction(event)" > Rs.12k-18k </button >
+							<button  class="category_button" onclick="myFunction(event)" > Rs.18k-25k </button >
 						</div>
 					</div>
 
@@ -112,8 +112,6 @@
 							<H4>SORT BY</H4>
 							<div class ="dropdown">
 								<button class="category_popularity_button"> Popularity </button >
-								<!-- <div class="dropdown"> -->
-							  	<!-- <button class="dropbtn">Dropdown</button> -->
 							  	<div class="dropdown-content">
 							    	<a href="#">Popularity</a>
 							    	<a href="#">New Arrivals</a>
@@ -126,20 +124,55 @@
 					</div>
 
 					<div id="myDIV">
-						Lorem Ipsum.
+						<div>
+							<div class="hr_top">
+							</div>
+							<p class="applied_filters"> Applied Filters </p>
+							<div id="selected_filter"></div>
+							<button class="clear_all" onclick="clear_all()"> <h4>CLEAR ALL </h4></button>
+						</div>
 					</div>
 
-
-
 						<script>
-							function myFunction() {
-							    var x = document.getElementById("myDIV");
-							    if (x.style.display === "block") {
-							        x.style.display = "none";
-							    } else {
+						var x = document.getElementById("myDIV");
+
+							function myFunction(event) {
+								// console.log(event.currentTarget.innerHTML);
+							    if (getComputedStyle(x).display === "none") {
 							        x.style.display = "block";
 							    }
+
+							    if(x.style.display === "block") {
+
+							    	var str = event.currentTarget.className;
+
+							    	if( !str.match(/active/) ) {
+							    		
+							    		// console.log(event.currentTarget.innerHTML);
+
+							        	var span = document.createElement('span');
+										span.innerHTML = event.currentTarget.innerHTML;
+
+							        	var ele = document.getElementById("selected_filter");
+							        	span.setAttribute('id',event.currentTarget.innerHTML);
+							        	ele.append(span);
+
+							        	event.currentTarget.className += " active";
+							   		 }
+							   		 else {
+							   		 	 var remove = document.getElementById(event.currentTarget.innerHTML);
+							        	 event.currentTarget.className = "category_button";
+							        	 remove.remove();
+							        	//console.log(event.currentTarget.innerHTML);
+							    	}
+							    }
 							}
+
+						    function clear_all() {
+						    	x.style.display = "none";
+						    	document.getElementById("selected_filter").innerHTML= ' ';
+
+						    }							
 						</script>
 
 				<div class="display_item">
