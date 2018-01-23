@@ -159,38 +159,32 @@
 							        	span.setAttribute('id',event.currentTarget.innerHTML);  // Giving id to span created. id is same as button name.
 							        	ele.append(span);
 
-							        	$(event.currentTarget).addClass("active");
+							        	$(event.currentTarget).addClass("active"); // Adding active class on the clicked button.
 							        	array.push(event.currentTarget.innerHTML);
-							        	console.log(array);
+							        	// console.log(array);
 							   		 }
 							   		 else {
 							   		 	 var remove = document.getElementById(event.currentTarget.innerHTML);
-							        	 //event.currentTarget.className = "category_button"; //Js
-							        	 $(event.currentTarget).removeClass("active");  //Jquery
+							        	 //event.currentTarget.className = "category_button"; //Js implementation of removing active class.
+							        	 $(event.currentTarget).removeClass("active");  //Jquery implementation of removing active class.
 							        	 var index = array.findIndex(function (item){return item === event.currentTarget.innerHTML});
-							        	 array.splice(index,1);
-							        	 console.log(array);
+							        	 array.splice(index,1);  // Go the index specified and remove the element.
+							        	 // console.log(array);
 							        	 remove.remove();
 
-							        	 console.log(array.length);
+							        	 // console.log(array.length);
 							        	 if(array.length === 0) {
 							        	 	clear_all();
 							        	 }
-
-							        	 // if($(".selected_filter:empty")) {
-							        	 // 	 ($(".selected_filter:empty")).parent().hide();
-							        	 // 	clear_all();
-							        	 // }
-							        	//console.log(event.currentTarget.innerHTML);
 							    	}
 							    }
 							}
 
-						    function clear_all() {
+						    function clear_all() {    
 						    	x.style.display = "none";
-						    	document.getElementById("selected_filter").innerHTML= ' ';
-						    	$(".category_button").removeClass("active");
-						    	array = [];
+						    	document.getElementById("selected_filter").innerHTML= ' '; //replacing stack of span with whitespace.
+						    	$(".category_button").removeClass("active");  // remove active class from category button.
+						    	array = []; // uninitialize array.
 
 						    }							
 						</script>
