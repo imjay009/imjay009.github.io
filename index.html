@@ -3,12 +3,13 @@
 	<head>
 		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 		<link rel="stylesheet" type="text/css" href="css/main.css">
-		
+		<script src="js/jquery-3.3.1.min.js"></script>
 		<!-- Present locally, some functionality isn't working ? like glypicon -->
 		<!-- <link rel="stylesheet" href="bootstrap-4.0.0-beta.3-dist/css/bootstrap.min.css"> -->
 
 		<!-- Using CDN working perfectly ? -->
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    
 		<title>
 			Buy and Sell Used Furniture & Appliances Online at Great Prices. Zero Effort, More Value. | Zefo
 		</title>
@@ -135,6 +136,7 @@
 
 						<script>
 						var x = document.getElementById("myDIV");
+						var array = [];
 
 							function myFunction(event) {
 								// console.log(event.currentTarget.innerHTML);
@@ -146,7 +148,7 @@
 
 							    	var str = event.currentTarget.className;
 
-							    	if( !str.match(/active/) ) {
+							    	if( !$(event.currentTarget).hasClass("active") ) {
 							    		
 							    		// console.log(event.currentTarget.innerHTML);
 
@@ -154,15 +156,31 @@
 										span.innerHTML = event.currentTarget.innerHTML;
 
 							        	var ele = document.getElementById("selected_filter");
-							        	span.setAttribute('id',event.currentTarget.innerHTML);
+							        	span.setAttribute('id',event.currentTarget.innerHTML);  // Giving id to span created. id is same as button name.
 							        	ele.append(span);
 
-							        	event.currentTarget.className += " active";
+							        	$(event.currentTarget).addClass("active");
+							        	array.push(event.currentTarget.innerHTML);
+							        	console.log(array);
 							   		 }
 							   		 else {
 							   		 	 var remove = document.getElementById(event.currentTarget.innerHTML);
-							        	 event.currentTarget.className = "category_button";
+							        	 //event.currentTarget.className = "category_button"; //Js
+							        	 $(event.currentTarget).removeClass("active");  //Jquery
+							        	 var index = array.findIndex(function (item){return item === event.currentTarget.innerHTML});
+							        	 array.splice(index,1);
+							        	 console.log(array);
 							        	 remove.remove();
+
+							        	 console.log(array.length);
+							        	 if(array.length === 0) {
+							        	 	clear_all();
+							        	 }
+
+							        	 // if($(".selected_filter:empty")) {
+							        	 // 	 ($(".selected_filter:empty")).parent().hide();
+							        	 // 	clear_all();
+							        	 // }
 							        	//console.log(event.currentTarget.innerHTML);
 							    	}
 							    }
@@ -171,6 +189,8 @@
 						    function clear_all() {
 						    	x.style.display = "none";
 						    	document.getElementById("selected_filter").innerHTML= ' ';
+						    	$(".category_button").removeClass("active");
+						    	array = [];
 
 						    }							
 						</script>
